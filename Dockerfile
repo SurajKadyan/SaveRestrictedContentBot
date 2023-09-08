@@ -5,5 +5,5 @@ COPY requirements.txt /app/
 RUN pip3 install -r requirements.txt
 
 COPY . /app
-CMD ["bash","bash.sh"]
 EXPOSE 5000
+CMD ["bash","bash.sh"]
