@@ -1,8 +1,8 @@
-FROM python:3.9.2-slim-buster
-RUN mkdir /app && chmod 777 /app
+FROM python:3.9
 WORKDIR /app
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get -qq update && apt-get -qq install -y git python3 python3-pip ffmpeg
-COPY . .
-RUN pip3 install --no-cache-dir -r requirements.txt
-CMD ["bash","bash.sh"]
+
+COPY requirements.txt /app/
+RUN pip3 install -r requirements.txt
+
+COPY . /app
+CMD flask run -h 0.0.0.0 -p 10000 & python3 main.py
